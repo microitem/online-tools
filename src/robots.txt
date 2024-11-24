@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://goodboog.info/sitemap.xml
+
+# Global rules
+Allow: /tools/
+Allow: /assets/
+Disallow: /temp/
+Disallow: /test/

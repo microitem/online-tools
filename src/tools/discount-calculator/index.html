@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discount Calculator | GoodBoog.info</title>
+    <link href="/styles/output.css" rel="stylesheet">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free discount calculator - calculate savings, discounted prices and total amount saved. Quick and easy price calculations.">
+    <meta name="keywords" content="discount calculator, price calculator, savings calculator, percentage discount, sale price">
+    <meta name="author" content="GoodBoog.info">
+    
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="en" href="https://goodboog.info/tools/discount-calculator/">
+    <link rel="alternate" hreflang="sk" href="https://goodboog.info/tools/discount-calculator/sk/">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center mb-4">
+                <a href="/" class="text-blue-600 hover:text-blue-800">← Back to Home</a>
+                <div class="language-switcher">
+                    <a href="." class="text-sm text-gray-600 hover:text-gray-900 font-bold">English</a>
+                    <span class="mx-2 text-gray-400">|</span>
+                    <a href="sk/" class="text-sm text-gray-600 hover:text-gray-900">Slovensky</a>
+                </div>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-800">Discount Calculator</h1>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-xl mx-auto bg-white rounded-lg shadow p-6">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="originalPrice">
+                    Original Price ($):
+                </label>
+                <input type="number" id="originalPrice" class="w-full p-2 border rounded" value="100">
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="discount">
+                    Discount (%):
+                </label>
+                <input type="number" id="discount" class="w-full p-2 border rounded" value="20" min="0" max="100">
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded space-y-2">
+                <p class="flex justify-between">
+                    <span class="text-gray-600">You Save:</span>
+                    <span class="font-bold">$<span id="savingsAmount">20.00</span></span>
+                </p>
+                <p class="flex justify-between">
+                    <span class="text-gray-600">Final Price:</span>
+                    <span class="font-bold">$<span id="finalPrice">80.00</span></span>
+                </p>
+                <div class="w-full bg-gray-200 rounded-full h-2.5 mt-4">
+                    <div class="bg-green-600 h-2.5 rounded-full" id="discountBar" style="width: 20%"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="container mx-auto px-4 py-6 text-center">
+            <p>&copy; 2024 GoodBoog.info. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function calculateDiscount() {
+            const originalPrice = parseFloat(document.getElementById('originalPrice').value);
+            const discount = parseFloat(document.getElementById('discount').value);
+            
+            if (isNaN(originalPrice) || isNaN(discount)) return;
+            
+            const savings = originalPrice * (discount / 100);
+            const finalPrice = originalPrice - savings;
+            
+            document.getElementById('savingsAmount').textContent = savings.toFixed(2);
+            document.getElementById('finalPrice').textContent = finalPrice.toFixed(2);
+            document.getElementById('discountBar').style.width = discount + '%';
+        }
+
+        document.getElementById('originalPrice').addEventListener('input', calculateDiscount);
+        document.getElementById('discount').addEventListener('input', calculateDiscount);
+        
+        calculateDiscount();
+    </script>
+</body>
+</html>

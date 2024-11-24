@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Length Unit Converter | GoodBoog.info</title>
+    <link href="/styles/output.css" rel="stylesheet">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free online length unit converter - easily convert between meters, kilometers, centimeters, and millimeters. Fast and accurate unit conversion tool.">
+    <meta name="keywords" content="unit converter, length conversion, meters to kilometers, centimeters to meters, online calculator">
+    <meta name="author" content="GoodBoog.info">
+    
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="en" href="https://goodboog.info/tools/unit-converter/">
+    <link rel="alternate" hreflang="sk" href="https://goodboog.info/tools/unit-converter/sk/">
+</head>
+<body class="bg-gray-50">
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center mb-4">
+                <a href="/" class="text-blue-600 hover:text-blue-800">← Back to Home</a>
+                <div class="language-switcher">
+                    <a href="." class="text-sm text-gray-600 hover:text-gray-900 font-bold">English</a>
+                    <span class="mx-2 text-gray-400">|</span>
+                    <a href="sk/" class="text-sm text-gray-600 hover:text-gray-900">Slovensky</a>
+                </div>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-800">Length Unit Converter</h1>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-xl mx-auto bg-white rounded-lg shadow p-6">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="value">
+                    Value:
+                </label>
+                <input type="number" id="value" class="w-full p-2 border rounded" value="1">
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="fromUnit">
+                        From:
+                    </label>
+                    <select id="fromUnit" class="w-full p-2 border rounded">
+                        <option value="m">Meters (m)</option>
+                        <option value="km">Kilometers (km)</option>
+                        <option value="cm">Centimeters (cm)</option>
+                        <option value="mm">Millimeters (mm)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="toUnit">
+                        To:
+                    </label>
+                    <select id="toUnit" class="w-full p-2 border rounded">
+                        <option value="cm">Centimeters (cm)</option>
+                        <option value="m">Meters (m)</option>
+                        <option value="km">Kilometers (km)</option>
+                        <option value="mm">Millimeters (mm)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded">
+                <p class="text-center text-lg">
+                    Result: <span id="result" class="font-bold">100</span> <span id="resultUnit">cm</span>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-8">
+        <div class="container mx-auto px-4 py-6 text-center">
+            <p>&copy; 2024 GoodBoog.info. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function convert() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+            
+            let meters;
+            switch(fromUnit) {
+                case 'km': meters = value * 1000; break;
+                case 'm': meters = value; break;
+                case 'cm': meters = value / 100; break;
+                case 'mm': meters = value / 1000; break;
+            }
+            
+            let result;
+            switch(toUnit) {
+                case 'km': result = meters / 1000; break;
+                case 'm': result = meters; break;
+                case 'cm': result = meters * 100; break;
+                case 'mm': result = meters * 1000; break;
+            }
+            
+            document.getElementById('result').textContent = result.toFixed(2);
+            document.getElementById('resultUnit').textContent = toUnit;
+        }
+
+        document.getElementById('value').addEventListener('input', convert);
+        document.getElementById('fromUnit').addEventListener('change', convert);
+        document.getElementById('toUnit').addEventListener('change', convert);
+        
+        convert();
+    </script>
+</body>
+</html>
