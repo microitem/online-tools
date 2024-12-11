@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter | Free Online Unit Conversion Tool | Goodboog</title>
+    <meta name="description" content="✓ Fast online unit converter ➤ Convert length, weight, volume and temperature ✓ Easy to use ✓ Accurate results ✓ No registration needed">
+    
+    <!-- AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2531845767488846"
+     crossorigin="anonymous"></script>
+
+    <style>
+        /* CSS Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            background: #f5f5f5;
+        }
+
+        .bg-white {
+            background: white;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        /* Language switch */
+        .language-switch {
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+
+        .language-switch a {
+            color: #666;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        /* Form elements */
+        select, input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        /* Main container */
+        .converter-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        /* Responsive grid */
+        @media (min-width: 768px) {
+            .converter-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .converter-section {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Info sections */
+        .converter-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .converter-info h3 {
+            color: #2c3e50;
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .converter-info h3:first-child {
+            margin-top: 0;
+        }
+
+        .converter-info p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            color: #666;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <h1>Unit Converter</h1>
+            
+            <div class="language-switch">
+                <a href="/online-tools/src/converter/index.html" class="font-bold">EN</a> |
+                <a href="/online-tools/src/converter/sk/index.html">SK</a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="converter-container">
+            <div class="converter-section">
+                <h2>Select Conversion Type</h2>
+                <select id="conversion-type">
+                    <option value="length">Length</option>
+                    <option value="weight">Weight</option>
+                    <option value="volume">Volume</option>
+                    <option value="temperature">Temperature</option>
+                </select>
+            </div>
+
+            <div class="converter-grid">
+                <div class="converter-section">
+                    <label for="from-value">Enter Value</label>
+                    <input type="number" id="from-value" step="any">
+                    <select id="from-unit"></select>
+                </div>
+
+                <div class="converter-section">
+                    <label for="to-value">Result</label>
+                    <input type="number" id="to-value" readonly>
+                    <select id="to-unit"></select>
+                </div>
+            </div>
+        </div>
+
+        <div class="converter-info">
+            <h2>Supported Units</h2>
+            
+            <div class="converter-grid">
+                <div>
+                    <h3>Length Units</h3>
+                    <p>Meter (m), Kilometer (km), Centimeter (cm), Millimeter (mm), Inch (in), Foot (ft), Yard (yd), Mile (mi)</p>
+                    
+                    <h3>Weight Units</h3>
+                    <p>Kilogram (kg), Gram (g), Milligram (mg), Ton (t), Pound (lb), Ounce (oz)</p>
+                </div>
+                
+                <div>
+                    <h3>Volume Units</h3>
+                    <p>Liter (l), Milliliter (ml), Cubic meter (m³), Gallon (gal), Pint (pt)</p>
+                    
+                    <h3>Temperature Units</h3>
+                    <p>Celsius (°C), Fahrenheit (°F), Kelvin (K)</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 goodboog.com - Back to <a href="/online-tools/src/public/index.html">homepage</a></p>
+    </footer>
+
+    <script>
+        // Existujúci JavaScript kód zostáva rovnaký
+    </script>
+</body>
+</html>

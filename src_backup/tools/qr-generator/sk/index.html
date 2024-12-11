@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator | GoodBoog.info</title>
+    <title>QR kód generátor | goodboog.com</title>
     <link href="/styles/output.css" rel="stylesheet">
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Free online QR code generator - create QR codes for URLs, text, or contact information. Generate and download QR codes instantly.">
-    <meta name="keywords" content="qr code generator, create qr code, qr code maker, free qr generator, online qr tool">
-    <meta name="author" content="GoodBoog.info">
+    <meta name="description" content="Online generátor QR kódov zadarmo - vytvorte QR kód pre text, webové adresy alebo kontaktné údaje. Jednoduchá tvorba a sťahovanie QR kódov.">
+    <meta name="keywords" content="qr kód generátor, vytvoriť qr kód, generovanie qr kódov, qr kódy zadarmo, online nástroj qr">
+    <meta name="author" content="goodboog.com">
     
     <!-- Language Alternates -->
-    <link rel="alternate" hreflang="en" href="https://goodboog.info/tools/qr-generator/">
-    <link rel="alternate" hreflang="sk" href="https://goodboog.info/tools/qr-generator/sk/">
+    <link rel="alternate" hreflang="en" href="https://goodboog.com/tools/qr-generator/">
+    <link rel="alternate" hreflang="sk" href="https://goodboog.com/tools/qr-generator/sk/">
     
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -22,14 +22,14 @@
     <header class="bg-white shadow-sm">
         <nav class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center mb-4">
-                <a href="/" class="text-blue-600 hover:text-blue-800">← Back to Home</a>
+                <a href="/sk/" class="text-blue-600 hover:text-blue-800">← Späť na hlavnú stránku</a>
                 <div class="language-switcher">
-                    <a href="." class="text-sm text-gray-600 hover:text-gray-900 font-bold">English</a>
+                    <a href="../" class="text-sm text-gray-600 hover:text-gray-900">English</a>
                     <span class="mx-2 text-gray-400">|</span>
-                    <a href="sk/" class="text-sm text-gray-600 hover:text-gray-900">Slovensky</a>
+                    <a href="." class="text-sm text-gray-600 hover:text-gray-900 font-bold">Slovensky</a>
                 </div>
             </div>
-            <h1 class="text-2xl font-bold text-gray-800">QR Code Generator</h1>
+            <h1 class="text-2xl font-bold text-gray-800">QR kód generátor</h1>
         </nav>
     </header>
 
@@ -37,18 +37,18 @@
         <div class="max-w-xl mx-auto bg-white rounded-lg shadow p-6">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="text">
-                    Text or URL:
+                    Text alebo webová adresa:
                 </label>
                 <textarea 
                     id="text" 
                     class="w-full p-2 border rounded h-24" 
-                    placeholder="Enter text or URL to create QR code"
+                    placeholder="Zadajte text alebo webovú adresu pre vytvorenie QR kódu"
                 >https://example.com</textarea>
             </div>
             
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2">
-                    QR Code Size:
+                    Veľkosť QR kódu:
                 </label>
                 <select id="size" class="w-full p-2 border rounded">
                     <option value="128">128x128 px</option>
@@ -67,7 +67,7 @@
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onclick="downloadQR()"
                 >
-                    Download QR Code
+                    Stiahnuť QR kód
                 </button>
             </div>
         </div>
@@ -75,7 +75,7 @@
 
     <footer class="bg-gray-800 text-white mt-8">
         <div class="container mx-auto px-4 py-6 text-center">
-            <p>&copy; 2024 GoodBoog.info. All rights reserved.</p>
+            <p>&copy; 2024 goodboog.com. Všetky práva vyhradené.</p>
         </div>
     </footer>
 
@@ -103,7 +103,7 @@
             const canvas = document.querySelector("#qrcode canvas");
             if (canvas) {
                 const link = document.createElement('a');
-                link.download = 'qr-code.png';
+                link.download = 'qr-kod.png';
                 link.href = canvas.toDataURL();
                 link.click();
             }
