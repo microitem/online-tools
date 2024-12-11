@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Generátor | Vytvorte QR kódy zadarmo online | Goodboog</title>
+    <meta name="description" content="✓ Generátor QR kódov zadarmo ➤ Vytvorte QR kódy pre URL, text, kontakty ✓ Okamžité stiahnutie ✓ Vysoká kvalita ✓ Bez registrácie">
+    
+    <!-- AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2531845767488846"
+     crossorigin="anonymous"></script>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Rovnaké štýly ako v anglickej verzii -->
+    <style>
+        /* Sem vložiť všetky štýly z anglickej verzie */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            background: #f5f5f5;
+        }
+
+        .bg-white {
+            background: white;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .language-switch {
+            text-align: right;
+            padding: 0.5rem;
+        }
+
+        .language-switch a {
+            color: #666;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        .language-switch a.active {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .qr-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .input-section {
+            margin-bottom: 1.5rem;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        select:focus, input:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52,152,219,0.1);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .button {
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+        }
+
+        .button.download {
+            background-color: #2ecc71;
+        }
+
+        .button.download:hover {
+            background-color: #27ae60;
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+
+        .qr-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: #666;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-white shadow-sm">
+        <div class="language-switch">
+            <a href="/online-tools/src/qrcode/index.html">EN</a> |
+            <a href="/online-tools/src/qrcode/sk/index.html" class="active">SK</a>
+        </div>
+        <div class="header">
+            <h1>QR Kód Generátor</h1>
+            <p>Vytvorte QR kódy rýchlo a jednoducho</p>
+        </div>
+    </div>
+
+    <main>
+        <div class="grid-2">
+            <!-- Input Section -->
+            <div class="qr-container">
+                <div class="input-section">
+                    <h2>Vytvoriť QR kód</h2>
+                    
+                    <div class="input-section">
+                        <label for="content-type">Typ obsahu</label>
+                        <select id="content-type" onchange="updateInputFields()">
+                            <option value="url">URL / Webová stránka</option>
+                            <option value="text">Jednoduchý text</option>
+                            <option value="contact">Kontaktné údaje</option>
+                        </select>
+                    </div>
+
+                    <!-- URL Input -->
+                    <div id="url-input" class="input-section">
+                        <label for="url">Zadajte URL</label>
+                        <input type="url" id="url" placeholder="https://priklad.sk">
+                    </div>
+
+                    <!-- Text Input -->
+                    <div id="text-input" class="input-section hidden">
+                        <label for="text">Zadajte text</label>
+                        <textarea id="text" rows="4" placeholder="Zadajte váš text"></textarea>
+                    </div>
+
+                    <!-- Contact Input -->
+                    <div id="contact-input" class="hidden">
+                        <div class="input-section">
+                            <label for="name">Meno</label>
+                            <input type="text" id="name">
+                        </div>
+                        <div class="input-section">
+                            <label for="email">Email</label>
+                            <input type="email" id="email">
+                        </div>
+                        <div class="input-section">
+                            <label for="phone">Telefón</label>
+                            <input type="tel" id="phone">
+                        </div>
+                    </div>
+
+                    <div class="input-section">
+                        <label for="qr-size">Veľkosť QR kódu</label>
+                        <select id="qr-size">
+                            <option value="128">Malý (128x128)</option>
+                            <option value="256" selected>Stredný (256x256)</option>
+                            <option value="512">Veľký (512x512)</option>
+                        </select>
+                    </div>
+
+                    <button onclick="generateQRCode()" class="button">Generovať QR kód</button>
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="qr-container">
+                <h2>Váš QR kód</h2>
+                <div id="qrcode"></div>
+                <div class="text-center">
+                    <button onclick="downloadQRCode()" class="button download">Stiahnuť QR kód</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 goodboog.com - Späť na <a href="/online-tools/src/public/sk/index.html">hlavnú stránku</a></p>
+    </footer>
+
+    <script>
+        // Rovnaký JavaScript kód ako v anglickej verzii
+        let qrcode = null;
+
+        function updateInputFields() {
+            const contentType = document.getElementById('content-type').value;
+            
+            document.getElementById('url-input').classList.add('hidden');
+            document.getElementById('text-input').classList.add('hidden');
+            document.getElementById('contact-input').classList.add('hidden');
+            
+            switch(contentType) {
+                case 'url':
+                    document.getElementById('url-input').classList.remove('hidden');
+                    break;
+                case 'text':
+                    document.getElementById('text-input').classList.remove('hidden');
+                    break;
+                case 'contact':
+                    document.getElementById('contact-input').classList.remove('hidden');
+                    break;
+            }
+        }
+
+        function getQRContent() {
+            const contentType = document.getElementById('content-type').value;
+            
+            switch(contentType) {
+                case 'url':
+                    return document.getElementById('url').value;
+                case 'text':
+                    return document.getElementById('text').value;
+                case 'contact':
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    return `BEGIN:VCARD\nVERSION:3.0\nN:${name}\nEMAIL:${email}\nTEL:${phone}\nEND:VCARD`;
+            }
+        }
+
+        function generateQRCode() {
+            const content = getQRContent();
+            const size = document.getElementById('qr-size').value;
+            
+            document.getElementById('qrcode').innerHTML = '';
+            
+            qrcode = new QRCode(document.getElementById('qrcode'), {
+                text: content,
+                width: parseInt(size),
+                height: parseInt(size)
+            });
+        }
+
+        function downloadQRCode() {
+            if (!qrcode) return;
+            
+            const canvas = document.querySelector('#qrcode canvas');
+            const link = document.createElement('a');
+            link.download = 'qr-kod.png';
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        updateInputFields();
+    </script>
+</body>
+</html>
