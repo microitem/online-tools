@@ -12,7 +12,6 @@
 
     <!-- Rovnaké štýly ako v anglickej verzii -->
     <style>
-        /* Rovnaké CSS ako v anglickej verzii */
         * {
             margin: 0;
             padding: 0;
@@ -197,3 +196,75 @@
                 </div>
 
                 <div class="results">
+                    <div class="result-item">
+                        <div class="result-label">Pôvodná cena:</div>
+                        <div id="original-price-display" class="result-value">0,00 €</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Ušetríte:</div>
+                        <div id="savings" class="result-value savings">0,00 €</div>
+                    </div>
+
+                    <div class="result-item">
+                        <div class="result-label">Konečná cena:</div>
+                        <div id="final-price" class="result-value final-price">0,00 €</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Section -->
+            <div class="calculator-container">
+                <h2>Ako používať</h2>
+                <div class="input-section">
+                    <p>1. Zadajte pôvodnú cenu v eurách</p>
+                    <p>2. Zadajte percentá zľavy</p>
+                    <p>3. Sledujte automatický výpočet úspory a konečnej ceny</p>
+                </div>
+
+                <h3>Funkcie</h3>
+                <ul>
+                    <li>Okamžité výpočty</li>
+                    <li>Presnosť na dve desatinné miesta</li>
+                    <li>Zobrazenie ušetrenej sumy</li>
+                    <li>Jednoduché a prehľadné použitie</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 goodboog.com - Späť na <a href="/online-tools/src/public/sk/index.html">hlavnú stránku</a></p>
+    </footer>
+
+    <script>
+        function formatCurrency(value) {
+            return new Intl.NumberFormat('sk-SK', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(value);
+        }
+
+        function calculateDiscount() {
+            const originalPrice = parseFloat(document.getElementById('original-price').value) || 0;
+            const discount = parseFloat(document.getElementById('discount').value) || 0;
+            
+            const savings = originalPrice * (discount / 100);
+            const finalPrice = originalPrice - savings;
+            
+            document.getElementById('original-price-display').textContent = formatCurrency(originalPrice);
+            document.getElementById('savings').textContent = formatCurrency(savings);
+            document.getElementById('final-price').textContent = formatCurrency(finalPrice);
+        }
+
+        // Add event listeners for real-time calculation
+        document.getElementById('original-price').addEventListener('input', calculateDiscount);
+        document.getElementById('discount').addEventListener('input', calculateDiscount);
+
+        // Initial calculation
+        calculateDiscount();
+    </script>
+</body>
+</html>
