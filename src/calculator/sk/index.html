@@ -4,175 +4,196 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kalkulačka zliav | Výpočet ceny po zľave | Goodboog</title>
-    <meta name="description" content="✓ Kalkulačka zliav zadarmo ➤ Vypočítajte zľavnené ceny, úspory a zľavy ✓ Jednoduché použitie ✓ Ideálne pre nákupy a výpredaje">
+    <meta name="description" content="✓ Kalkulačka zliav zadarmo ➤ Vypočítajte zľavnené ceny a úspory ✓ Okamžité výpočty ✓ Bez registrácie">
     
     <!-- AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2531845767488846"
      crossorigin="anonymous"></script>
 
-    <!-- Styles -->
-    <link href="/shared/styles/main.css" rel="stylesheet">
-</head>
-<body class="bg-gray-50">
-    <div class="bg-white shadow-sm">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-gray-800">Kalkulačka zliav</h1>
-            
-            <div class="language-switcher">
-                <a href="/online-tools/src/calculator/index.html" class="text-sm text-gray-600 hover:text-gray-900">English</a>
-                <span class="mx-2 text-gray-400">|</span>
-                <a href="/online-tools/src/calculator/sk/index.html" class="text-sm text-gray-600 hover:text-gray-900 font-bold">Slovensky</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Top Ad -->
-    <div class="container mx-auto px-4 py-4">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2531845767488846"
-             data-ad-slot="337686204"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
-
-    <main class="container mx-auto px-4 py-8">
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Input Section -->
-                <div>
-                    <h2 class="text-xl font-semibold mb-4">Vypočítať zľavu</h2>
-                    
-                    <div class="mb-4">
-                        <label for="original-price" class="block text-gray-700 mb-2">Pôvodná cena (€)</label>
-                        <input type="number" id="original-price" class="w-full p-2 border rounded" step="0.01" min="0">
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="discount" class="block text-gray-700 mb-2">Zľava (%)</label>
-                        <input type="number" id="discount" class="w-full p-2 border rounded" step="0.1" min="0" max="100">
-                    </div>
-
-                    <button onclick="calculateDiscount()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors">
-                        Vypočítať
-                    </button>
-                </div>
-
-                <!-- Results Section -->
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h2 class="text-xl font-semibold mb-4">Výsledky</h2>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-gray-600 text-sm">Ušetríte:</label>
-                            <div id="savings" class="text-2xl font-bold text-green-600">0,00 €</div>
-                        </div>
-
-                        <div>
-                            <label class="block text-gray-600 text-sm">Konečná cena:</label>
-                            <div id="final-price" class="text-3xl font-bold text-blue-600">0,00 €</div>
-                        </div>
-
-                        <div class="pt-4 border-t">
-                            <label class="block text-gray-600 text-sm">Pôvodná cena:</label>
-                            <div id="original-price-display" class="text-lg text-gray-800">0,00 €</div>
-                        </div>
-
-                        <div>
-                            <label class="block text-gray-600 text-sm">Použitá zľava:</label>
-                            <div id="discount-display" class="text-lg text-gray-800">0%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Middle Ad -->
-        <div class="my-6">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2531845767488846"
-                 data-ad-slot="9164550947"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-
-        <!-- How It Works Section -->
-        <div class="bg-white rounded-lg shadow-lg p-6">
-            <h2 class="text-xl font-semibold mb-4">Ako používať kalkulačku zliav</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                    <h3 class="font-semibold mb-2">Vypočítajte svoju úsporu</h3>
-                    <ol class="list-decimal list-inside space-y-2 text-gray-600">
-                        <li>Zadajte pôvodnú cenu tovaru</li>
-                        <li>Zadajte výšku zľavy v percentách</li>
-                        <li>Kliknite na "Vypočítať"</li>
-                        <li>Pozrite si úsporu a konečnú cenu</li>
-                    </ol>
-                </div>
-                
-                <div>
-                    <h3 class="font-semibold mb-2">Funkcie</h3>
-                    <ul class="list-disc list-inside space-y-2 text-gray-600">
-                        <li>Okamžité výpočty</li>
-                        <li>Presnosť na dve desatinné miesta</li>
-                        <li>Zobrazenie ušetrenej sumy</li>
-                        <li>Prehľadné zobrazenie výsledkov</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Bottom Ad -->
-        <div class="mt-6">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-2531845767488846"
-                 data-ad-slot="6694861356"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-    </main>
-
-    <footer class="container mx-auto px-4 py-6 text-center text-gray-600">
-        <p>© 2024 goodboog.com - Späť na <a href="/online-tools/src/public/sk/index.html" class="text-blue-600 hover:text-blue-800">hlavnú stránku</a></p>
-    </footer>
-
-    <script>
-        function calculateDiscount() {
-            const originalPrice = parseFloat(document.getElementById('original-price').value) || 0;
-            const discountPercent = parseFloat(document.getElementById('discount').value) || 0;
-            
-            const savings = originalPrice * (discountPercent / 100);
-            const finalPrice = originalPrice - savings;
-            
-            // Format numbers to 2 decimal places with EUR
-            const formatter = new Intl.NumberFormat('sk-SK', {
-                style: 'currency',
-                currency: 'EUR',
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
-
-            document.getElementById('savings').textContent = formatter.format(savings);
-            document.getElementById('final-price').textContent = formatter.format(finalPrice);
-            document.getElementById('original-price-display').textContent = formatter.format(originalPrice);
-            document.getElementById('discount-display').textContent = `${discountPercent}%`;
+    <!-- Rovnaké štýly ako v anglickej verzii -->
+    <style>
+        /* Rovnaké CSS ako v anglickej verzii */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        // Add event listeners for real-time calculation
-        document.getElementById('original-price').addEventListener('input', calculateDiscount);
-        document.getElementById('discount').addEventListener('input', calculateDiscount);
-    </script>
-</body>
-</html>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            background: #f5f5f5;
+        }
+
+        .bg-white {
+            background: white;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+
+        .language-switch {
+            text-align: right;
+            padding: 0.5rem;
+        }
+
+        .language-switch a {
+            color: #666;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        .language-switch a.active {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .calculator-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .input-section {
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52,152,219,0.1);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .results {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .result-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .result-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .savings {
+            color: #27ae60;
+        }
+
+        .final-price {
+            color: #3498db;
+            font-size: 2rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            color: #666;
+        }
+
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-white shadow-sm">
+        <div class="language-switch">
+            <a href="/online-tools/src/calculator/index.html">EN</a> |
+            <a href="/online-tools/src/calculator/sk/index.html" class="active">SK</a>
+        </div>
+        <div class="header">
+            <h1>Kalkulačka zliav</h1>
+            <p>Vypočítajte zľavnené ceny a úspory okamžite</p>
+        </div>
+    </div>
+
+    <main>
+        <div class="grid-2">
+            <!-- Input Section -->
+            <div class="calculator-container">
+                <h2>Vypočítať zľavu</h2>
+                
+                <div class="input-section">
+                    <label for="original-price">Pôvodná cena (€)</label>
+                    <input type="number" id="original-price" min="0" step="0.01" placeholder="Zadajte pôvodnú cenu">
+                </div>
+
+                <div class="input-section">
+                    <label for="discount">Zľava (%)</label>
+                    <input type="number" id="discount" min="0" max="100" step="0.1" placeholder="Zadajte percentá zľavy">
+                </div>
+
+                <div class="results">
