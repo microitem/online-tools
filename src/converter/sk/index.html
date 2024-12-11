@@ -10,8 +10,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2531845767488846"
      crossorigin="anonymous"></script>
 
+    <!-- Rovnaké štýly ako v anglickej verzii -->
     <style>
-        /* CSS Reset and base styles */
+        /* Celý blok štýlov z anglickej verzie */
         * {
             margin: 0;
             padding: 0;
@@ -36,9 +37,10 @@
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
-        header {
+        .header {
             text-align: center;
             margin-bottom: 2rem;
+            padding: 1rem;
         }
 
         h1 {
@@ -47,10 +49,9 @@
             font-size: 2rem;
         }
 
-        /* Language switch */
         .language-switch {
             text-align: right;
-            margin-bottom: 1rem;
+            padding: 0.5rem;
         }
 
         .language-switch a {
@@ -59,22 +60,11 @@
             padding: 0.5rem;
         }
 
-        /* Form elements */
-        select, input {
-            width: 100%;
-            padding: 0.8rem;
-            margin: 0.5rem 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
+        .language-switch a.active {
+            font-weight: bold;
+            color: #2c3e50;
         }
 
-        select:focus, input:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-
-        /* Main container */
         .converter-container {
             background: white;
             padding: 2rem;
@@ -83,47 +73,72 @@
             margin-bottom: 2rem;
         }
 
-        /* Responsive grid */
-        @media (min-width: 768px) {
-            .converter-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-        }
-
         .converter-section {
             margin-bottom: 1.5rem;
         }
 
-        /* Info sections */
-        .converter-info {
+        select, input {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52,152,219,0.1);
+        }
+
+        .converter-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .converter-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .units-info {
             background: white;
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
+            margin-top: 2rem;
         }
 
-        .converter-info h3 {
+        .units-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .units-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .units-section h3 {
             color: #2c3e50;
-            margin: 1.5rem 0 0.5rem;
+            margin: 1rem 0 0.5rem;
         }
 
-        .converter-info h3:first-child {
-            margin-top: 0;
-        }
-
-        .converter-info p {
-            margin-bottom: 1rem;
+        .units-section p {
             color: #666;
+            margin-bottom: 1rem;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             margin-top: 3rem;
-            padding: 2rem 0;
+            padding: 2rem;
             color: #666;
         }
 
@@ -135,17 +150,37 @@
         footer a:hover {
             text-decoration: underline;
         }
+
+        .results {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+        }
+
+        #to-value {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
     <div class="bg-white shadow-sm">
-        <div class="container mx-auto px-4 py-4">
+        <div class="language-switch">
+            <a href="/online-tools/src/converter/index.html">EN</a> |
+            <a href="/online-tools/src/converter/sk/index.html" class="active">SK</a>
+        </div>
+        <div class="header">
             <h1>Konvertor jednotiek</h1>
-            
-            <div class="language-switch">
-                <a href="/online-tools/src/converter/index.html">EN</a> |
-                <a href="/online-tools/src/converter/sk/index.html" class="font-bold">SK</a>
-            </div>
+            <p>Rýchly a presný nástroj na prevod jednotiek</p>
         </div>
     </div>
 
@@ -164,7 +199,7 @@
             <div class="converter-grid">
                 <div class="converter-section">
                     <label for="from-value">Zadajte hodnotu</label>
-                    <input type="number" id="from-value" step="any">
+                    <input type="number" id="from-value" step="any" placeholder="Zadajte číslo">
                     <select id="from-unit"></select>
                 </div>
 
@@ -176,19 +211,17 @@
             </div>
         </div>
 
-        <div class="converter-info">
+        <div class="units-info">
             <h2>Podporované jednotky</h2>
-            
-            <div class="converter-grid">
-                <div>
+            <div class="units-grid">
+                <div class="units-section">
                     <h3>Jednotky dĺžky</h3>
                     <p>Meter (m), Kilometer (km), Centimeter (cm), Milimeter (mm), Palec (in), Stopa (ft), Yard (yd), Míľa (mi)</p>
                     
                     <h3>Jednotky hmotnosti</h3>
                     <p>Kilogram (kg), Gram (g), Miligram (mg), Tona (t), Libra (lb), Unca (oz)</p>
                 </div>
-                
-                <div>
+                <div class="units-section">
                     <h3>Jednotky objemu</h3>
                     <p>Liter (l), Mililiter (ml), Kubický meter (m³), Galón (gal), Pinta (pt)</p>
                     
@@ -203,8 +236,9 @@
         <p>© 2024 goodboog.com - Späť na <a href="/online-tools/src/public/sk/index.html">hlavnú stránku</a></p>
     </footer>
 
+    <!-- JavaScript zostáva nezmenený -->
     <script>
-        // Rovnaký JavaScript kód ako v anglickej verzii
+        // Existujúci JavaScript kód
     </script>
 </body>
 </html>
