@@ -1,26 +1,21 @@
 name: Deploy to Production
-
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
       - name: Add known hosts
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H 84.247.160.146 >> ~/.ssh/known_hosts
-          
       - name: Deploy to server
         env:
           DEPLOY_PATH: /srv/docker/goodboog.com
