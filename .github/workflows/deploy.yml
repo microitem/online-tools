@@ -48,5 +48,5 @@ jobs:
           rsync -avz src/public "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
           rsync -avz src/shared "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
           rsync -avz src/tools "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
-          # Nakoniec reštartujeme Docker
-          ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "cd /srv/docker/goodboog.com && docker compose up -d --build"
+          # Reštartujeme Docker v správnom adresári
+          ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "cd /srv/docker/nginx-proxy && docker compose up -d --build"
