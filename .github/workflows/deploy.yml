@@ -35,11 +35,11 @@ jobs:
          find . -type f -name "*.html" -exec sed -i 's|/online-tools/src/public/|https://goodboog.com/|g' {} +
          
      - name: Deploy files to server
-       env:
-         DEPLOY_PATH: /srv/docker/goodboog.com/src
-         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-         DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-       run: |
-         echo "Deploying to path: $DEPLOY_PATH"
-         rsync -avz --delete ./ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"
-         ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "cd /srv/docker/goodboog.com && docker compose up -d --build"
+        env:
+          DEPLOY_PATH: /srv/docker/goodboog.com/src
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+        run: |
+          echo "Deploying to path: $DEPLOY_PATH"
+          rsync -avz --delete --exclude='.git/' --exclude='.github/' --exclude='src_backup/' --exclude='src_backup_2/' ./ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"
+          ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "cd /srv/docker/goodboog.com && docker compose up -d --build"
