@@ -41,5 +41,12 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
           echo "Deploying to path: $DEPLOY_PATH"
-          rsync -avz --delete ./src/ "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}"
+          # Najprv vyčistíme cieľový adresár
+          ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "rm -rf ${DEPLOY_PATH}/*"
+          # Potom kopírujeme len potrebné adresáre
+          rsync -avz categories "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+          rsync -avz public "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+          rsync -avz shared "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+          rsync -avz tools "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+          # Nakoniec reštartujeme Docker
           ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "cd /srv/docker/goodboog.com && docker compose up -d --build"
