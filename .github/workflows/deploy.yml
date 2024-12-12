@@ -19,7 +19,7 @@ jobs:
       - name: Add known hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+          echo "${{ secrets.DEPLOY_HOST_KEY }}" >> ~/.ssh/known_hosts
           
       - name: Replace paths and domains
         run: |
