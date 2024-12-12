@@ -1,26 +1,26 @@
-name: Deploy to Production
+name: Deploy to server
+
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches: [ main ]  # alebo master, podľa vašej hlavnej vetvy
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - name: Add known hosts
+      - uses: actions/checkout@v3
+      
+      # Krok na prepis ciest
+      - name: Replace paths
         run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H 84.247.160.146 >> ~/.ssh/known_hosts
+          find . -type f -name "*.html" -exec sed -i 's|/online-tools/src|/srv/docker/goodboog.com/src|g' {} +
+      
+      # Následné kroky pre deploy na server
       - name: Deploy to server
-        env:
-          DEPLOY_PATH: /srv/docker/goodboog.com
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_HOST: 84.247.160.146
-        run: |
-          ssh $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && git pull origin main"
-          ssh $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && docker compose up -d --build"
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "."
+          target: "/srv/docker/goodboog.com/src"
