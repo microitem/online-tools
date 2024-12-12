@@ -21,9 +21,18 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
           
-      - name: Replace paths in files
+      - name: Replace paths and domains
         run: |
+          # Nahrádza cestu k súborom
           find . -type f -name "*.html" -exec sed -i 's|/online-tools/src|/srv/docker/goodboog.com/src|g' {} +
+          
+          # Nahrádza odkazy na subdomény pre každú kategóriu
+          find . -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/converter/|https://converter.goodboog.com/|g' {} +
+          find . -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/calculator/|https://calculator.goodboog.com/|g' {} +
+          find . -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/qrcode/|https://qrcode.goodboog.com/|g' {} +
+          
+          # Nahrádza odkazy na hlavnú doménu
+          find . -type f -name "*.html" -exec sed -i 's|/online-tools/src/public/|https://goodboog.com/|g' {} +
           
       - name: Deploy files to server
         env:
