@@ -19,19 +19,17 @@ jobs:
       - name: Add known hosts
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H 84.247.160.146 >> ~/.ssh/known_hosts
-      - name: Replace paths
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+          
+      - name: Replace paths in files
         run: |
-          find . -type f -name "*.html" -exec sed -i 's|/online-tools/src|/srv/docker/goodboog.com/src|g' {} +          
-      
-      
-      - name: Deploy to server
+          find . -type f -name "*.html" -exec sed -i 's|/online-tools/src|/srv/docker/goodboog.com/src|g' {} +
+          
+      - name: Deploy files to server
         env:
-          DEPLOY_PATH: /srv/docker/goodboog.com
+          DEPLOY_PATH: /srv/docker/goodboog.com/src
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_HOST: 84.247.160.146
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
         run: |
-          ssh $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && git pull origin main"
-          ssh $DEPLOY_USER@$DEPLOY_HOST "cd $DEPLOY_PATH && docker compose up -d --build"
-        source: "."
-          target: "/srv/docker/goodboog.com/src"  
+          rsync -avz --delete ./ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+          ssh $DEPLOY_USER@$DEPLOY_HOST "cd /srv/docker/goodboog.com && docker compose up -d --build"
