@@ -1,52 +1,62 @@
 name: Deploy to Production
 
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+ push:
+   branches: [ main ]
+ workflow_dispatch:
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          
-      - name: Add known hosts
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_HOST_KEY }}" >> ~/.ssh/known_hosts
-          
-      - name: Replace paths and domains
-        run: |
-          # Nahrádza cestu k súborom
-          find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src|/srv/docker/goodboog.com/src|g' {} +
-          
-          # Nahrádza odkazy na subdomény pre každú kategóriu
-          find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/converter/|https://converter.goodboog.com/|g' {} +
-          find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/calculator/|https://calculator.goodboog.com/|g' {} +
-          find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/qrcode/|https://qrcode.goodboog.com/|g' {} +
-          
-          # Nahrádza odkazy na hlavnú doménu
-          find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/public/|https://goodboog.com/|g' {} +
-          
-      - name: Deploy files to server
-        env:
-          DEPLOY_PATH: /srv/docker/goodboog.com/src
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-        run: |
-          echo "Deploying to path: $DEPLOY_PATH"
-          # Najprv vyčistíme cieľový adresár
-          ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "rm -rf ${DEPLOY_PATH}/*"
-          # Potom kopírujeme len potrebné adresáre zo src priečinka
-          rsync -avz src/categories "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
-          rsync -avz src/public "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
-          rsync -avz src/shared "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
-          rsync -avz src/tools "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
-          # Reštartujeme Docker v správnom adresári
-          ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "cd /srv/docker/nginx-proxy && docker compose up -d --build"
+ deploy:
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v4
+     
+     - name: Setup SSH
+       uses: webfactory/ssh-agent@v0.8.0
+       with:
+         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+         
+     - name: Add known hosts
+       run: |
+         mkdir -p ~/.ssh
+         echo "${{ secrets.DEPLOY_HOST_KEY }}" >> ~/.ssh/known_hosts
+         
+     - name: Replace paths and domains
+       run: |
+         # Nahrádzame odkazy na jazykové verzie a root cesty
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/public/|/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/public/|/|g' {} +
+         
+         # Nahrádzame odkazy na zdieľané zdroje
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/shared/|/shared/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/shared/|/shared/|g' {} +
+         
+         # Nahrádzame odkazy na nástroje
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/tools/|/tools/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/tools/|/tools/|g' {} +
+         
+         # Nahrádzame odkazy na kategórie
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/categories/|/categories/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/|/categories/|g' {} +
+         
+         # Nahrádzame odkazy na subdomény pre každú kategóriu
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/converter/|https://converter.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/calculator/|https://calculator.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/qrcode/|https://qrcode.goodboog.com/|g' {} +
+         
+     - name: Deploy files to server
+       env:
+         DEPLOY_PATH: /srv/docker/goodboog.com/src
+         DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+         DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+       run: |
+         echo "Deploying to path: $DEPLOY_PATH"
+         # Najprv vyčistíme cieľový adresár
+         ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "rm -rf ${DEPLOY_PATH}/*"
+         # Potom kopírujeme len potrebné adresáre zo src priečinka
+         rsync -avz src/categories "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+         rsync -avz src/public "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+         rsync -avz src/shared "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+         rsync -avz src/tools "${DEPLOY_USER}@${DEPLOY_HOST}:${DEPLOY_PATH}/"
+         # Reštartujeme Docker v správnom adresári
+         ssh "${DEPLOY_USER}@${DEPLOY_HOST}" "cd /srv/docker/goodboog.com && docker compose up -d --build"
