@@ -39,10 +39,23 @@ jobs:
          find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/categories/|/categories/|g' {} +
          find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/|/categories/|g' {} +
          
-         # Nahrádzame odkazy na subdomény pre každú kategóriu
+         # Nahrádzame odkazy na subdomény - priama cesta
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/converter/|https://converter.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/calculator/|https://calculator.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/qrcode/|https://qrcode.goodboog.com/|g' {} +
+         
+         # Nahrádzame odkazy na subdomény - cez categories
          find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/converter/|https://converter.goodboog.com/|g' {} +
          find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/calculator/|https://calculator.goodboog.com/|g' {} +
          find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/categories/qrcode/|https://qrcode.goodboog.com/|g' {} +
+         
+         # Nahrádzame aj verzie s /srv/docker predponou
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/converter/|https://converter.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/calculator/|https://calculator.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/qrcode/|https://qrcode.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/categories/converter/|https://converter.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/categories/calculator/|https://calculator.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/categories/qrcode/|https://qrcode.goodboog.com/|g' {} +
          
      - name: Deploy files to server
        env:
