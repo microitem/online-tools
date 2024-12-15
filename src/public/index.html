@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Online Tools | Unit Converter, Calculator, QR Generator | Goodboog</title>
     <meta name="description" content="Free online tools for everyday use - Unit converter, Discount calculator, QR code generator. Simple, fast and free to use. No registration needed.">
-    
     <!-- Rovnaké štýly ako predtým... -->
     <style>
         /* Existujúce štýly zostávajú... */
@@ -15,7 +14,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
             line-height: 1.6;
@@ -25,45 +23,37 @@
             padding: 1rem;
             background: #f5f5f5;
         }
-
         .bg-white {
             background: white;
         }
-
         .shadow-sm {
             box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
-
         header {
             text-align: center;
             margin-bottom: 2rem;
         }
-
         h1 {
             color: #2c3e50;
             margin-bottom: 0.5rem;
             font-size: 2rem;
             margin-left: 30px;
         }
-
         .language-switch {
             text-align: right;
             margin-bottom: 1rem;
         }
-
         .language-switch a {
             color: #666;
             text-decoration: none;
             padding: 0.5rem;
         }
-
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
-
         .tool-card {
             background: white;
             border-radius: 8px;
@@ -73,17 +63,14 @@
             color: inherit;
             transition: transform 0.2s;
         }
-
         .tool-card:hover {
             transform: translateY(-5px);
         }
-
         .tool-card h2 {
             color: #2c3e50;
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
-
         footer {
             text-align: center;
             margin-top: 3rem;
@@ -95,37 +82,32 @@
 <body>
     <div class="bg-white shadow-sm">
         <div class="container mx-auto px-4 py-4">
-            <h1>Free Online Tools</h1>
-            
+            <h1>Free Online Tools</h1>            
             <div class="language-switch">
                 <a href="/online-tools/src/public/index.html">EN</a> |
                 <a href="/online-tools/src/public/sk/index.html">SK</a>
             </div>
         </div>
     </div>
-
     <main>
         <div class="tools-grid">
-            <!-- Unit Converter -->
-            <a href="/online-tools/src/tools/converter/index.html" class="tool-card">
-                <h2>Unit Converter</h2>
-                <p>Easy conversion between different units - length, weight, volume, and temperature. Fast and accurate results.</p>
-            </a>
-
-            <!-- Discount Calculator -->
-            <a href="/online-tools/src/tools/calculator/index.html" class="tool-card">
-                <h2>Discount Calculator</h2>
-                <p>Quick calculation of discounts, savings amount and final price after discount.</p>
-            </a>
-
             <!-- QR Generator -->
             <a href="/online-tools/src/tools/qrcode/index.html" class="tool-card">
                 <h2>QR Code Generator</h2>
                 <p>Create QR codes for any text, URL, or contact information. Simple to use and instantly downloadable.</p>
             </a>
+            <!-- Unit Converter -->
+            <a href="/online-tools/src/tools/converter/index.html" class="tool-card">
+                <h2>Unit Converter</h2>
+                <p>Easy conversion between different units - length, weight, volume, and temperature. Fast and accurate results.</p>
+            </a>
+            <!-- Discount Calculator -->
+            <a href="/online-tools/src/tools/calculator/index.html" class="tool-card">
+                <h2>Discount Calculator</h2>
+                <p>Quick calculation of discounts, savings amount and final price after discount.</p>
+            </a>
         </div>
     </main>
-
     <footer>
         <p>© 2024 goodboog.com - All tools are free to use</p>
     </footer>
