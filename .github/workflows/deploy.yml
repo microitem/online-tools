@@ -23,43 +23,34 @@ jobs:
          
      - name: Replace paths and domains
        run: |
-         # Hlavná doména a jazykové verzie
-         find ./src -type f -name "*.html" -exec sed -i 's|/srv/docker/goodboog.com/src/public/|https://goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/online-tools/src/public/|https://goodboog.com/|g' {} +
-         
-         # Prepínače jazykov pre hlavnú doménu
-         find ./src -type f -name "*.html" -exec sed -i 's|href="/sk/|href="https://goodboog.com/sk/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|href="/en/|href="https://goodboog.com/en/|g' {} +
+         # Základné cesty pre nástroje
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/converter/|"https://converter.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/calculator/|"https://calculator.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/qrcode/|"https://qrcode.goodboog.com/|g' {} +
          
          # Prepínače jazykov pre nástroje
-         find ./src -type f -name "*.html" -exec sed -i 's|href="converter/sk/|href="https://converter.goodboog.com/sk/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|href="calculator/sk/|href="https://calculator.goodboog.com/sk/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|href="qrcode/sk/|href="https://qrcode.goodboog.com/sk/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/converter/sk/|"https://converter.goodboog.com/sk/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/calculator/sk/|"https://calculator.goodboog.com/sk/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/qrcode/sk/|"https://qrcode.goodboog.com/sk/|g' {} +
+
+         # Prepínače jazykov pre hlavnú doménu
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/public/sk/|"https://goodboog.com/sk/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/public/en/|"https://goodboog.com/en/|g' {} +
          
          # Zdieľané zdroje (CSS)
-         find ./src -type f -name "*.html" -exec sed -i 's|/shared/styles/|https://goodboog.com/shared/styles/|g' {} +
-         
-         # Nástroje - priama cesta
-         find ./src -type f -name "*.html" -exec sed -i 's|/tools/converter/|https://converter.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/tools/calculator/|https://calculator.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/tools/qrcode/|https://qrcode.goodboog.com/|g' {} +
-         
-         # Nástroje - cez categories
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/converter/|https://converter.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/calculator/|https://calculator.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/qrcode/|https://qrcode.goodboog.com/|g' {} +
-         
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/shared/|"https://goodboog.com/shared/|g' {} +
+
          # Kategórie
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/design/|https://design.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/dev/|https://dev.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/education/|https://education.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/finance/|https://finance.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/fun/|https://fun.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/health/|https://health.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/productivity/|https://productivity.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/social/|https://social.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/tools/|https://tools.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|/categories/travel/|https://travel.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/design/|"https://design.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/dev/|"https://dev.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/education/|"https://education.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/finance/|"https://finance.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/fun/|"https://fun.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/health/|"https://health.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/productivity/|"https://productivity.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/social/|"https://social.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/tools/|"https://tools.goodboog.com/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/travel/|"https://travel.goodboog.com/|g' {} +
          
      - name: Deploy files to server
        env:
