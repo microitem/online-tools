@@ -23,34 +23,19 @@ jobs:
          
      - name: Replace paths and domains
        run: |
-         # Základné cesty pre nástroje
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/converter/|"https://converter.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/calculator/|"https://calculator.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/qrcode/|"https://qrcode.goodboog.com/|g' {} +
-         
-         # Prepínače jazykov pre nástroje
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/converter/sk/|"https://converter.goodboog.com/sk/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/calculator/sk/|"https://calculator.goodboog.com/sk/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/tools/qrcode/sk/|"https://qrcode.goodboog.com/sk/|g' {} +
-
          # Prepínače jazykov pre hlavnú doménu
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/public/sk/|"https://goodboog.com/sk/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/public/en/|"https://goodboog.com/en/|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|href="/online-tools/src/public/sk/index.html"|href="https://goodboog.com/sk/"|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|href="/online-tools/src/public/index.html"|href="https://goodboog.com/"|g' {} +
          
-         # Zdieľané zdroje (CSS)
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/shared/|"https://goodboog.com/shared/|g' {} +
+         # Odkazy na nástroje - anglická verzia
+         find ./src -type f -name "*.html" -exec sed -i 's|href="/online-tools/src/tools/converter/index.html"|href="https://converter.goodboog.com/"|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|href="/online-tools/src/tools/calculator/index.html"|href="https://calculator.goodboog.com/"|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|href="/online-tools/src/tools/qrcode/index.html"|href="https://qrcode.goodboog.com/"|g' {} +
 
-         # Kategórie
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/design/|"https://design.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/dev/|"https://dev.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/education/|"https://education.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/finance/|"https://finance.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/fun/|"https://fun.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/health/|"https://health.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/productivity/|"https://productivity.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/social/|"https://social.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/tools/|"https://tools.goodboog.com/|g' {} +
-         find ./src -type f -name "*.html" -exec sed -i 's|"/online-tools/src/categories/travel/|"https://travel.goodboog.com/|g' {} +
+         # Odkazy na nástroje - slovenská verzia
+         find ./src -type f -name "*.html" -exec sed -i 's|href="/online-tools/src/tools/converter/sk/index.html"|href="https://converter.goodboog.com/sk/"|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|href="/online-tools/src/tools/calculator/sk/index.html"|href="https://calculator.goodboog.com/sk/"|g' {} +
+         find ./src -type f -name "*.html" -exec sed -i 's|href="/online-tools/src/tools/qrcode/sk/index.html"|href="https://qrcode.goodboog.com/sk/"|g' {} +
          
      - name: Deploy files to server
        env:
