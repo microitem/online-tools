@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <!-- Pozadie -->
+  <rect width="1200" height="800" fill="#ffffff"/>
+  
+  <!-- Hlavná navigácia -->
+  <rect x="0" y="0" width="1200" height="60" fill="#3498db"/>
+  <text x="40" y="38" font-family="Arial" font-size="24" fill="white">Unit Converter</text>
+  <text x="1100" y="38" font-family="Arial" font-size="18" fill="white">goodboog</text>
+  
+  <!-- Hlavný obsah -->
+  <rect x="200" y="120" width="800" height="560" rx="8" fill="#f8f9fa"/>
+  
+  <!-- Kategórie konverzií -->
+  <rect x="240" y="150" width="720" height="50" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="270" y="182" font-family="Arial" font-size="18" fill="#495057">Temperature ▼</text>
+  
+  <!-- Vstupná sekcia -->
+  <rect x="240" y="230" width="340" height="400" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="270" y="270" font-family="Arial" font-size="18" fill="#495057">From:</text>
+  <rect x="270" y="290" width="280" height="50" rx="4" fill="white" stroke="#3498db"/>
+  <text x="290" y="322" font-family="Arial" font-size="20" fill="#495057">100</text>
+  <rect x="270" y="350" width="280" height="50" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="290" y="382" font-family="Arial" font-size="18" fill="#495057">Fahrenheit</text>
+  
+  <!-- Výstupná sekcia -->
+  <rect x="620" y="230" width="340" height="400" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="650" y="270" font-family="Arial" font-size="18" fill="#495057">To:</text>
+  <rect x="650" y="290" width="280" height="50" rx="4" fill="white" stroke="#3498db"/>
+  <text x="670" y="322" font-family="Arial" font-size="20" fill="#495057">37.8</text>
+  <rect x="650" y="350" width="280" height="50" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="670" y="382" font-family="Arial" font-size="18" fill="#495057">Celsius</text>
+  
+  <!-- Šípka medzi sekciami -->
+  <path d="M590 430 L610 430 M610 425 L630 430 L610 435" fill="none" stroke="#3498db" stroke-width="2"/>
+  
+  <!-- História konverzií -->
+  <text x="270" y="480" font-family="Arial" font-size="16" fill="#6c757d">Recent conversions:</text>
+  <rect x="270" y="500" width="280" height="100" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="290" y="530" font-family="Arial" font-size="14" fill="#6c757d">100°F = 37.8°C</text>
+  <text x="290" y="560" font-family="Arial" font-size="14" fill="#6c757d">212°F = 100°C</text>
+  
+  <!-- Footer -->
+  <text x="600" y="740" font-family="Arial" font-size="14" fill="#6c757d" text-anchor="middle">© 2024 goodboog. All rights reserved.</text>
+</svg>

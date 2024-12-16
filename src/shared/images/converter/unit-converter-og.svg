@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Pozadie -->
+  <rect width="1200" height="630" fill="white"/>
+  
+  <!-- Hlavný kontajner pre konvertor -->
+  <rect x="250" y="165" width="700" height="300" rx="8" fill="#f8f9fa"/>
+  
+  <!-- Horná lišta -->
+  <rect x="250" y="165" width="700" height="50" rx="8" fill="#3498db"/>
+  <text x="280" y="198" font-family="Arial" font-size="24" fill="white">Unit Converter</text>
+  
+  <!-- Vstupné pole -->
+  <rect x="280" y="245" width="280" height="50" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="300" y="277" font-family="Arial" font-size="20" fill="#495057">100</text>
+  
+  <!-- Výstupné pole -->
+  <rect x="640" y="245" width="280" height="50" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="660" y="277" font-family="Arial" font-size="20" fill="#495057">37.8</text>
+  
+  <!-- Šípka medzi poliami -->
+  <path d="M580 270 L600 270 M600 265 L620 270 L600 275" fill="none" stroke="#3498db" stroke-width="2"/>
+  
+  <!-- Selectboxy pre jednotky -->
+  <rect x="280" y="305" width="280" height="40" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="300" y="332" font-family="Arial" font-size="18" fill="#495057">Fahrenheit</text>
+  
+  <rect x="640" y="305" width="280" height="40" rx="4" fill="white" stroke="#dee2e6"/>
+  <text x="660" y="332" font-family="Arial" font-size="18" fill="#495057">Celsius</text>
+  
+  <!-- Názov a logo -->
+  <text x="600" y="520" font-family="Arial" font-size="32" fill="#3498db" text-anchor="middle" font-weight="bold">Unit Converter | goodboog</text>
+</svg>

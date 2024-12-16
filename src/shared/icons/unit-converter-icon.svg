@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Pozadie -->
+  <circle cx="256" cy="256" r="256" fill="#3498db"/>
+  
+  <!-- Predný symbol - štylizované šípky reprezentujúce konverziu -->
+  <g fill="white">
+    <!-- Ľavá jednotka -->
+    <rect x="96" y="216" width="140" height="80" rx="8"/>
+    <text x="116" y="268" font-family="Arial" font-size="40" fill="#3498db">F°</text>
+    
+    <!-- Pravá jednotka -->
+    <rect x="276" y="216" width="140" height="80" rx="8"/>
+    <text x="296" y="268" font-family="Arial" font-size="40" fill="#3498db">C°</text>
+    
+    <!-- Šípky -->
+    <path d="M236 256 h40 m-20 -15 l20 15 l-20 15" stroke="white" stroke-width="12" fill="none"/>
+  </g>
+</svg>
