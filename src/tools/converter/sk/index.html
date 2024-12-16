@@ -3,242 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konvertor jednotiek | Online prevod jednotiek zadarmo | Goodboog</title>
-    <meta name="description" content="✓ Rýchly online konvertor jednotiek ➤ Prevod dĺžky, hmotnosti, objemu a teploty ✓ Jednoduché použitie ✓ Presné výsledky ✓ Bez registrácie">
     
+    <!-- Primary Meta Tags -->
+    <title>Prevodník Jednotiek | Online Prevod Jednotiek Zadarmo | Goodboog</title>
+    <meta name="description" content="✓ Rýchly online prevodník jednotiek ➤ Prevod dĺžky (m, km, ft), hmotnosti (kg, lb), objemu (l, gal) a teploty (°C, °F) ✓ Jednoduché použitie ✓ Presné výsledky">
+    <meta name="keywords" content="prevodník jednotiek, prevod jednotiek, kalkulačka jednotiek, prevodník mier, prevodník váhy, prevodník objemu">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Goodboog">
+    <meta name="theme-color" content="#3498db">
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/online-tools/src/shared/icons/icon-192x192.png">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Online Prevodník Jednotiek Zadarmo | Jednoduchý a Presný">
+    <meta property="og:description" content="Prevádzajte jednotky online - dĺžka, hmotnosť, objem, teplota. Bezplatný nástroj s presnými výsledkami.">
+    <meta property="og:url" content="https://converter.goodboog.com/sk/">
+    <meta property="og:image" content="https://converter.goodboog.com/images/converter-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://converter.goodboog.com/sk/">
+    
+    <!-- Alternative Language Versions -->
+    <link rel="alternate" hreflang="sk" href="https://converter.goodboog.com/sk/">
+    <link rel="alternate" hreflang="en" href="https://converter.goodboog.com/">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- CSS -->
+    <link rel="preload" href="/online-tools/src/shared/styles/main.css" as="style">
+    <link rel="stylesheet" href="/online-tools/src/shared/styles/main.css">
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Online Prevodník Jednotiek",
+        "applicationCategory": "UtilityApplication",
+        "description": "Bezplatný online nástroj na prevod jednotiek vrátane dĺžky, hmotnosti, objemu a teploty",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Goodboog",
+            "url": "https://goodboog.com"
+        }
+    }
+    </script>
+
     <!-- AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2531845767488846"
-     crossorigin="anonymous"></script>
-
-    <!-- Rovnaké štýly ako v anglickej verzii -->
-    <style>
-        /* Celý blok štýlov z anglickej verzie */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-            background: #f5f5f5;
-        }
-
-        .bg-white {
-            background: white;
-        }
-
-        .shadow-sm {
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-        }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-            font-size: 2rem;
-        }
-
-        .language-switch {
-            text-align: right;
-            padding: 0.5rem;
-        }
-
-        .language-switch a {
-            color: #666;
-            text-decoration: none;
-            padding: 0.5rem;
-        }
-
-        .language-switch a.active {
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .converter-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-
-        .converter-section {
-            margin-bottom: 1.5rem;
-        }
-
-        select, input {
-            width: 100%;
-            padding: 0.8rem;
-            margin: 0.5rem 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
-
-        select:focus, input:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 2px rgba(52,152,219,0.1);
-        }
-
-        .converter-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .converter-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .units-info {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-top: 2rem;
-        }
-
-        .units-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .units-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .units-section h3 {
-            color: #2c3e50;
-            margin: 1rem 0 0.5rem;
-        }
-
-        .units-section p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            color: #666;
-        }
-
-        footer a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .results {
-            background-color: #f8f9fa;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 0.5rem;
-        }
-
-        #to-value {
-            background-color: #f8f9fa;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #4a5568;
-            font-weight: 500;
-        }
-    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2531845767488846" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="bg-white shadow-sm">
-        <div class="language-switch">
-            <a href="/online-tools/src/tools/converter/index.html">EN</a> |
-            <a href="/online-tools/src/tools/converter/sk/index.html" class="active">SK</a>
-        </div>
-        <div class="header">
-            <h1>Konvertor jednotiek</h1>
-            <p>Rýchly a presný nástroj na prevod jednotiek</p>
-        </div>
+    <!-- Skip to main content -->
+    <div class="skip-to-main">
+        <a href="#main-content">Prejsť na hlavný obsah</a>
     </div>
 
-    <main>
-        <div class="converter-container">
-            <div class="converter-section">
-                <h2>Vyberte typ konverzie</h2>
-                <select id="conversion-type">
-                    <option value="length">Dĺžka</option>
-                    <option value="weight">Hmotnosť</option>
-                    <option value="volume">Objem</option>
-                    <option value="temperature">Teplota</option>
-                </select>
-            </div>
+    <header>
+        <!-- Breadcrumb -->
+        <nav aria-label="navigácia" class="breadcrumb">
+            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="/online-tools/src/public/sk/">
+                        <span itemprop="name">Domov</span>
+                    </a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="/online-tools/src/tools/sk/">
+                        <span itemprop="name">Nástroje</span>
+                    </a>
+                    <meta itemprop="position" content="2" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">Prevodník jednotiek</span>
+                    <meta itemprop="position" content="3" />
+                </li>
+            </ol>
+        </nav>
 
-            <div class="converter-grid">
-                <div class="converter-section">
-                    <label for="from-value">Zadajte hodnotu</label>
-                    <input type="number" id="from-value" step="any" placeholder="Zadajte číslo">
-                    <select id="from-unit"></select>
+        <nav class="language-switch">
+            <a href="/online-tools/src/tools/converter/index.html">EN</a> |
+            <a href="/online-tools/src/tools/converter/sk/index.html" class="active">SK</a>
+        </nav>
+        
+        <h1>Prevodník jednotiek</h1>
+        <p class="description">Rýchly a presný nástroj na prevod jednotiek</p>
+    </header>
+
+    <main id="main-content">
+        <!-- Converter Section -->
+        <section class="converter-section">
+            <h2>Vyberte typ konverzie</h2>
+            <form id="converter-form" aria-label="Formulár prevodníka jednotiek">
+                <div class="form-group">
+                    <label for="conversion-type">Typ konverzie</label>
+                    <select id="conversion-type" name="conversion-type">
+                        <option value="length">Dĺžka</option>
+                        <option value="weight">Hmotnosť</option>
+                        <option value="volume">Objem</option>
+                        <option value="temperature">Teplota</option>
+                    </select>
                 </div>
 
-                <div class="converter-section">
-                    <label for="to-value">Výsledok</label>
-                    <input type="number" id="to-value" readonly>
-                    <select id="to-unit"></select>
-                </div>
-            </div>
-        </div>
+                <div class="converter-grid">
+                    <div class="form-group">
+                        <label for="from-value">Zadajte hodnotu</label>
+                        <input type="number" id="from-value" step="any" placeholder="Zadajte číslo" required>
+                        <select id="from-unit" aria-label="Previesť z jednotky"></select>
+                    </div>
 
-        <div class="units-info">
+                    <div class="form-group">
+                        <label for="to-value">Výsledok</label>
+                        <input type="number" id="to-value" readonly aria-live="polite">
+                        <select id="to-unit" aria-label="Previesť na jednotku"></select>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Units Information -->
+        <section class="units-info">
             <h2>Podporované jednotky</h2>
             <div class="units-grid">
-                <div class="units-section">
+                <article>
                     <h3>Jednotky dĺžky</h3>
                     <p>Meter (m), Kilometer (km), Centimeter (cm), Milimeter (mm), Palec (in), Stopa (ft), Yard (yd), Míľa (mi)</p>
-                    
+                
                     <h3>Jednotky hmotnosti</h3>
                     <p>Kilogram (kg), Gram (g), Miligram (mg), Tona (t), Libra (lb), Unca (oz)</p>
-                </div>
-                <div class="units-section">
+                </article>
+                
+                <article>
                     <h3>Jednotky objemu</h3>
                     <p>Liter (l), Mililiter (ml), Kubický meter (m³), Galón (gal), Pinta (pt)</p>
-                    
+                
                     <h3>Jednotky teploty</h3>
                     <p>Celsius (°C), Fahrenheit (°F), Kelvin (K)</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" aria-label="Často kladené otázky">
+            <h2>Často kladené otázky</h2>
+            <div class="faq-grid" itemscope itemtype="https://schema.org/FAQPage">
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Ako presný je tento prevodník jednotiek?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Náš prevodník jednotiek poskytuje vysoko presné výsledky až na 8 desatinných miest. Všetky prevody sú založené na štandardných medzinárodných prevodných faktoroch.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Aké jednotky môžem prevádzať?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Môžete prevádzať rôzne jednotky vrátane dĺžky (metre, stopy), hmotnosti (kilogramy, libry), objemu (litre, galóny) a teploty (Celsius, Fahrenheit, Kelvin).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Je tento prevodník zadarmo?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Áno, náš prevodník jednotiek je úplne zadarmo. Nie je potrebná žiadna registrácia ani prihlásenie.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Môžem používať tento prevodník offline?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Momentálne náš prevodník vyžaduje pripojenie na internet. Väčšina moderných prehliadačov však uloží stránku do cache pamäte, čo umožňuje obmedzenú funkčnosť aj v offline režime.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Sú prevodné pomery aktuálne?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Áno, používame štandardné medzinárodné prevodné pomery, ktoré sú konštantné pre fyzikálne jednotky ako dĺžka, hmotnosť a objem. Pre teplotu sú prevody založené na matematických vzorcoch, ktoré sa nemenia.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h2>Súvisiace nástroje</h2>
+            <div class="tools-grid">
+                <a href="/online-tools/src/tools/calculator/sk/" class="tool-card">
+                    <h3>Kalkulačka zliav</h3>
+                    <p>Výpočet zliav a konečných cien.</p>
+                </a>
+                <a href="/online-tools/src/tools/qrcode/sk/" class="tool-card">
+                    <h3>QR kód generátor</h3>
+                    <p>Vytvorte QR kódy pre text alebo URL.</p>
+                </a>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>© 2024 goodboog.com - Späť na <a href="/online-tools/src/public/sk/index.html">hlavnú stránku</a></p>
+        <p>© 2024 goodboog.com - <a href="/online-tools/src/public/sk/index.html">Späť na hlavnú stránku</a></p>
     </footer>
 
-    <!-- JavaScript zostáva nezmenený -->
-    <script>
-        // Existujúci JavaScript kód
-    </script>
+    <!-- External JavaScript -->
+    <script src="/online-tools/src/shared/scripts/converter.js" defer></script>
 </body>
 </html>

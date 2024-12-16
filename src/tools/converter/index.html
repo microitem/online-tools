@@ -3,240 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter | Free Online Unit Conversion Tool | Goodboog</title>
-    <meta name="description" content="✓ Fast online unit converter ➤ Convert length, weight, volume and temperature ✓ Easy to use ✓ Accurate results ✓ No registration needed">
     
+    <!-- Primary Meta Tags -->
+    <title>Unit Converter | Free Online Unit Conversion Tool | Goodboog</title>
+    <meta name="description" content="✓ Fast online unit converter ➤ Convert length (m, km, ft), weight (kg, lbs), volume (l, gal) and temperature (°C, °F) ✓ Easy to use ✓ Accurate results ✓ Free">
+    <meta name="keywords" content="unit converter, measurement converter, length converter, weight converter, volume converter, temperature converter, metric converter">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Goodboog">
+    <meta name="theme-color" content="#3498db">
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="/online-tools/src/shared/icons/icon-192x192.png">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free Online Unit Converter | Easy & Accurate">
+    <meta property="og:description" content="Convert any units instantly - length, weight, volume, temperature. Free online conversion tool with accurate results.">
+    <meta property="og:url" content="https://converter.goodboog.com/">
+    <meta property="og:image" content="https://converter.goodboog.com/images/converter-preview.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://converter.goodboog.com/">
+    
+    <!-- Alternative Language Versions -->
+    <link rel="alternate" hreflang="en" href="https://converter.goodboog.com/">
+    <link rel="alternate" hreflang="sk" href="https://converter.goodboog.com/sk/">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- CSS -->
+    <link rel="preload" href="/online-tools/src/shared/styles/main.css" as="style">
+    <link rel="stylesheet" href="/online-tools/src/shared/styles/main.css">
+    
+    <!-- Schema.org Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Online Unit Converter",
+        "applicationCategory": "UtilityApplication",
+        "description": "Free online tool for converting units of measurement including length, weight, volume, and temperature",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "Goodboog",
+            "url": "https://goodboog.com"
+        }
+    }
+    </script>
+
     <!-- AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2531845767488846"
-     crossorigin="anonymous"></script>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-            background: #f5f5f5;
-        }
-
-        .bg-white {
-            background: white;
-        }
-
-        .shadow-sm {
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-        }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-            font-size: 2rem;
-        }
-
-        .language-switch {
-            text-align: right;
-            padding: 0.5rem;
-        }
-
-        .language-switch a {
-            color: #666;
-            text-decoration: none;
-            padding: 0.5rem;
-        }
-
-        .language-switch a.active {
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .converter-container {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-
-        .converter-section {
-            margin-bottom: 1.5rem;
-        }
-
-        select, input {
-            width: 100%;
-            padding: 0.8rem;
-            margin: 0.5rem 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
-
-        select:focus, input:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 2px rgba(52,152,219,0.1);
-        }
-
-        .converter-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .converter-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .units-info {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-top: 2rem;
-        }
-
-        .units-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .units-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .units-section h3 {
-            color: #2c3e50;
-            margin: 1rem 0 0.5rem;
-        }
-
-        .units-section p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            color: #666;
-        }
-
-        footer a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .results {
-            background-color: #f8f9fa;
-            padding: 1rem;
-            border-radius: 4px;
-            margin-top: 0.5rem;
-        }
-
-        #to-value {
-            background-color: #f8f9fa;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #4a5568;
-            font-weight: 500;
-        }
-    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2531845767488846" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="bg-white shadow-sm">
-        <div class="language-switch">
-            <a href="/online-tools/src/tools/converter/index.html" class="active">EN</a> |
-            <a href="/online-tools/src/tools/converter/sk/index.html">SK</a>
-        </div>
-        <div class="header">
-            <h1>Unit Converter</h1>
-            <p>Quick and accurate unit conversion tool</p>
-        </div>
+    <!-- Skip to main content -->
+    <div class="skip-to-main">
+        <a href="#main-content">Skip to main content</a>
     </div>
 
-    <main>
-        <div class="converter-container">
-            <div class="converter-section">
-                <h2>Select Conversion Type</h2>
-                <select id="conversion-type">
-                    <option value="length">Length</option>
-                    <option value="weight">Weight</option>
-                    <option value="volume">Volume</option>
-                    <option value="temperature">Temperature</option>
-                </select>
-            </div>
+    <header>
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="breadcrumb">
+            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="/online-tools/src/public/">
+                        <span itemprop="name">Home</span>
+                    </a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="/online-tools/src/tools/">
+                        <span itemprop="name">Tools</span>
+                    </a>
+                    <meta itemprop="position" content="2" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">Unit Converter</span>
+                    <meta itemprop="position" content="3" />
+                </li>
+            </ol>
+        </nav>
 
-            <div class="converter-grid">
-                <div class="converter-section">
-                    <label for="from-value">Enter Value</label>
-                    <input type="number" id="from-value" step="any" placeholder="Enter number">
-                    <select id="from-unit"></select>
+        <nav class="language-switch">
+            <a href="/online-tools/src/tools/converter/index.html" class="active">EN</a> |
+            <a href="/online-tools/src/tools/converter/sk/index.html">SK</a>
+        </nav>
+        
+        <h1>Unit Converter</h1>
+        <p class="description">Quick and accurate unit conversion tool</p>
+    </header>
+
+    <main id="main-content">
+        <!-- Converter Section -->
+        <section class="converter-section">
+            <h2>Select Conversion Type</h2>
+            <form id="converter-form" aria-label="Unit converter form">
+                <div class="form-group">
+                    <label for="conversion-type">Conversion Type</label>
+                    <select id="conversion-type" name="conversion-type">
+                        <option value="length">Length</option>
+                        <option value="weight">Weight</option>
+                        <option value="volume">Volume</option>
+                        <option value="temperature">Temperature</option>
+                    </select>
                 </div>
 
-                <div class="converter-section">
-                    <label for="to-value">Result</label>
-                    <input type="number" id="to-value" readonly>
-                    <select id="to-unit"></select>
-                </div>
-            </div>
-        </div>
+                <div class="converter-grid">
+                    <div class="form-group">
+                        <label for="from-value">Enter Value</label>
+                        <input type="number" id="from-value" step="any" placeholder="Enter number" required>
+                        <select id="from-unit" aria-label="Convert from unit"></select>
+                    </div>
 
-        <div class="units-info">
+                    <div class="form-group">
+                        <label for="to-value">Result</label>
+                        <input type="number" id="to-value" readonly aria-live="polite">
+                        <select id="to-unit" aria-label="Convert to unit"></select>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <!-- Units Information -->
+        <section class="units-info">
             <h2>Supported Units</h2>
             <div class="units-grid">
-                <div class="units-section">
+                <article>
                     <h3>Length Units</h3>
                     <p>Meter (m), Kilometer (km), Centimeter (cm), Millimeter (mm), Inch (in), Foot (ft), Yard (yd), Mile (mi)</p>
-                    
+                
                     <h3>Weight Units</h3>
                     <p>Kilogram (kg), Gram (g), Milligram (mg), Ton (t), Pound (lb), Ounce (oz)</p>
-                </div>
-                <div class="units-section">
+                </article>
+                
+                <article>
                     <h3>Volume Units</h3>
                     <p>Liter (l), Milliliter (ml), Cubic meter (m³), Gallon (gal), Pint (pt)</p>
-                    
+                
                     <h3>Temperature Units</h3>
                     <p>Celsius (°C), Fahrenheit (°F), Kelvin (K)</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq" aria-label="Frequently Asked Questions">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-grid" itemscope itemtype="https://schema.org/FAQPage">
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">How accurate is this unit converter?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Our unit converter provides highly accurate results with up to 8 decimal places. All conversions are based on standard international conversion factors.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Which units can I convert?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>You can convert various units including length (meters, feet), weight (kilograms, pounds), volume (liters, gallons), and temperature (Celsius, Fahrenheit, Kelvin).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Is this converter free to use?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Yes, our unit converter is completely free to use. No registration or signup is required.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Can I use this converter offline?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Currently, our converter requires an internet connection. However, most modern browsers will cache the page, allowing it to work with limited functionality even when offline.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 itemprop="name">Are the conversion rates up to date?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                            <p>Yes, we use standard international conversion rates that are constant for physical units like length, weight, and volume. For temperature, the conversions are based on mathematical formulas that never change.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Related Tools -->
+        <section class="related-tools">
+            <h2>Related Tools</h2>
+            <div class="tools-grid">
+                <a href="/online-tools/src/tools/calculator/" class="tool-card">
+                    <h3>Discount Calculator</h3>
+                    <p>Calculate discounts and final prices.</p>
+                </a>
+                <a href="/online-tools/src/tools/qrcode/" class="tool-card">
+                    <h3>QR Code Generator</h3>
+                    <p>Create QR codes for any text or URL.</p>
+                </a>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <p>© 2024 goodboog.com - Back to <a href="/online-tools/src/public/index.html">Homepage</a></p>
+        <p>© 2024 goodboog.com - <a href="/online-tools/src/public/index.html">Back to Homepage</a></p>
     </footer>
 
-    <!-- JavaScript zostáva nezmenený -->
-    <script>
-        // Existujúci JavaScript kód
-    </script>
+    <!-- External JavaScript -->
+    <script src="/online-tools/src/shared/scripts/converter.js" defer></script>
 </body>
 </html>
