@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import LanguageSelector from '../components/LanguageSelector.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+ title: string;
+ description: string;
+ lang?: string;
+}
+
+const { title, description, lang = 'en' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width" />
+   <title>{title}</title>
+   <meta name="description" content={description} />
+   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+   <meta name="theme-color" content="#3b82f6" />
+   <link rel="manifest" href="/manifest.json" />
+ </head>
+ <body class="min-h-screen bg-gray-50">
+   <header class="bg-white shadow-sm">
+     <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+       <a href={`/${lang}`} class="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+         GoodBoog Tools
+       </a>
+       <LanguageSelector />
+     </nav>
+   </header>
+   <main>
+     <slot />
+   </main>
+   <Footer />
+ </body>
+</html>

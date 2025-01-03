@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Prevent crawling of non-localized URLs
+Disallow: /api/
+Disallow: /cdn-cgi/
+Disallow: /assets/
+
+# Language specific sitemaps
+Sitemap: https://goodboog.com/sitemap-index.xml
+Sitemap: https://goodboog.com/sitemap-tools.xml

@@ -1,0 +1,17 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import QRGenerator from '../../tools/qr/components/QRGenerator.astro';
+import { useTranslations } from '../../tools/qr/i18n/translations';
+
+const t = useTranslations('de');
+---
+
+<Layout 
+  title={t('meta.title')}
+  description={t('meta.description')}
+  lang="de">
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-center mb-8">{t('meta.title')}</h1>
+    <QRGenerator />
+  </main>
+</Layout>

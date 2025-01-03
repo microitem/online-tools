@@ -1,0 +1,74 @@
+---
+import { getLangFromUrl } from '../../../utils/i18n';
+import { useTranslations } from '../i18n/translations';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="max-w-xl mx-auto p-4">
+  <div class="mb-6">
+    <label for="qr-text" class="block text-sm font-medium text-gray-700 mb-2">
+      {t('input.label')}
+    </label>
+    <textarea
+      id="qr-text"
+      name="qr-text"
+      class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      rows="4"
+      placeholder={t('input.placeholder')}
+      aria-label={t('input.label')}
+    ></textarea>
+  </div>
+
+  <div class="flex flex-col items-center gap-4">
+    <button
+      id="generate-qr"
+      class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+      type="button"
+      disabled
+    >
+      {t('button.generate')}
+    </button>
+    <div id="qr-result" class="w-64 h-64 flex items-center justify-center border border-gray-300 rounded-lg bg-white">
+      <p class="text-gray-500 text-center p-4">{t('result.empty')}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const qr = async () => (await import('qrcode')).default;
+  let qrLib;
+
+  const init = async () => {
+    const text = document.getElementById('qr-text');
+    const btn = document.getElementById('generate-qr');
+    const result = document.getElementById('qr-result');
+    if (!text || !btn || !result) return;
+
+    const gen = async t => {
+      if (!qrLib) qrLib = await qr();
+      const url = await qrLib.toDataURL(t, {
+        width: 256,
+        margin: 1,
+        errorCorrectionLevel: 'H'
+      });
+      result.innerHTML = `<img src="${url}" alt="QR Code" class="w-64 h-64">`;
+    };
+
+    let timeout;
+    text.addEventListener('input', e => {
+      const val = e.target.value.trim();
+      btn.disabled = !val;
+      clearTimeout(timeout);
+      if (val) timeout = setTimeout(() => gen(val), 500);
+    });
+
+    btn.addEventListener('click', () => {
+      const val = text.value.trim();
+      if (val) gen(val);
+    });
+  };
+
+  init();
+</script>
