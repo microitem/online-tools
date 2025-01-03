@@ -7,17 +7,13 @@ export default defineConfig({
   integrations: [
     tailwind({
       config: { path: './tailwind.config.mjs' },
-      minify: true
+      applyBaseStyles: false
     }),
     sitemap({
       i18n: {
         defaultLocale: 'en',
         locales: {
-          en: 'en-US',
-          sk: 'sk-SK',
-          de: 'de-DE',
-          fr: 'fr-FR',
-          es: 'es-ES'
+          en: 'en-US', sk: 'sk-SK', de: 'de-DE', fr: 'fr-FR', es: 'es-ES'
         }
       }
     })
@@ -25,22 +21,27 @@ export default defineConfig({
   output: 'static',
   build: {
     inlineStylesheets: 'always',
-    minify: true,
-    cssMinify: true,
-    optimization: {
-      prefetch: true
+    assets: 'assets',
+    assetsPrefix: '/_assets',
+    experimental: {
+      optimizeHoistedScript: true
     }
   },
-  compressHTML: true,
   vite: {
     build: {
-      cssMinify: true,
-      minify: true,
+      cssCodeSplit: false,
+      cssMinify: 'lightningcss',
+      minify: 'terser',
       rollupOptions: {
         output: {
           manualChunks: {
             qrcode: ['qrcode']
           }
+        }
+      },
+      terserOptions: {
+        compress: {
+          drop_console: true
         }
       }
     },

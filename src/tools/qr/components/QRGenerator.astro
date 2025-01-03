@@ -17,8 +17,6 @@ const t = useTranslations(lang);
       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       rows="4"
       placeholder={t('input.placeholder')}
-      autocomplete="off"
-      spellcheck="false"
       aria-label={t('input.label')}
     ></textarea>
   </div>
@@ -29,80 +27,46 @@ const t = useTranslations(lang);
       class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
       type="button"
       disabled
-      aria-label={t('button.generate')}
     >
       {t('button.generate')}
     </button>
-    <div 
-      id="qr-result" 
-      class="w-64 h-64 flex items-center justify-center border border-gray-300 rounded-lg bg-white"
-      aria-live="polite"
-    >
+    <div id="qr-result" class="w-64 h-64 flex items-center justify-center border border-gray-300 rounded-lg bg-white">
       <p class="text-gray-500 text-center p-4">{t('result.empty')}</p>
     </div>
   </div>
 </div>
 
 <script>
-  const genQR = async () => {
-    const QRCode = (await import('qrcode')).default;
-    return QRCode;
-  };
-
-  let qrModule: typeof import('qrcode') | null = null;
+  const qr = async () => (await import('qrcode')).default;
+  let qrLib;
 
   const init = async () => {
-    const textArea = document.getElementById('qr-text') as HTMLTextAreaElement;
-    const generateButton = document.getElementById('generate-qr') as HTMLButtonElement;
-    const resultDiv = document.getElementById('qr-result') as HTMLDivElement;
+    const text = document.getElementById('qr-text');
+    const btn = document.getElementById('generate-qr');
+    const result = document.getElementById('qr-result');
+    if (!text || !btn || !result) return;
 
-    if (!textArea || !generateButton || !resultDiv) return;
-
-    let debounceTimeout: number;
-
-    const generateQR = async (text: string) => {
-      if (!qrModule) {
-        qrModule = await genQR();
-      }
-
-      try {
-        const url = await qrModule.toDataURL(text, {
-          width: 256,
-          margin: 1,
-          color: {
-            dark: '#000000',
-            light: '#ffffff'
-          },
-          errorCorrectionLevel: 'H'
-        });
-
-        const img = document.createElement('img');
-        img.src = url;
-        img.alt = 'Generated QR Code';
-        img.className = 'w-64 h-64';
-        
-        resultDiv.innerHTML = '';
-        resultDiv.appendChild(img);
-      } catch (err) {
-        console.error(err);
-      }
+    const gen = async t => {
+      if (!qrLib) qrLib = await qr();
+      const url = await qrLib.toDataURL(t, {
+        width: 256,
+        margin: 1,
+        errorCorrectionLevel: 'H'
+      });
+      result.innerHTML = `<img src="${url}" alt="QR Code" class="w-64 h-64">`;
     };
 
-    textArea.addEventListener('input', () => {
-      const hasText = textArea.value.trim().length > 0;
-      generateButton.disabled = !hasText;
-      
-      clearTimeout(debounceTimeout);
-      if (hasText) {
-        debounceTimeout = setTimeout(() => generateQR(textArea.value.trim()), 500);
-      }
+    let timeout;
+    text.addEventListener('input', e => {
+      const val = e.target.value.trim();
+      btn.disabled = !val;
+      clearTimeout(timeout);
+      if (val) timeout = setTimeout(() => gen(val), 500);
     });
 
-    generateButton.addEventListener('click', () => {
-      const text = textArea.value.trim();
-      if (text) {
-        generateQR(text);
-      }
+    btn.addEventListener('click', () => {
+      const val = text.value.trim();
+      if (val) gen(val);
     });
   };
 
