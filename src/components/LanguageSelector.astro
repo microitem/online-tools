@@ -1,0 +1,19 @@
+---
+import { languages, getLanguageFromURL } from '../i18n/config';
+
+const pathname = Astro.url.pathname;
+const currentLang = getLanguageFromURL(pathname);
+const path = pathname.replace(`/${currentLang}`, '');
+---
+
+<div class="language-selector">
+  <select
+    class="px-2 py-1 border rounded-md text-sm"
+    onchange="window.location.pathname = this.value">
+    {Object.entries(languages).map(([lang, label]) => (
+      <option value={`/${lang}${path}`} selected={lang === currentLang}>
+        {label}
+      </option>
+    ))}
+  </select>
+</div>

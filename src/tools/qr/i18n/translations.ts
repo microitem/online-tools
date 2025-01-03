@@ -14,6 +14,30 @@ const translations = {
     'input.placeholder': 'Sem napíšte alebo vložte váš text...',
     'button.generate': 'Generovať QR kód',
     'result.empty': 'Tu sa zobrazí váš QR kód'
+  },
+  de: {
+    'meta.title': 'Kostenloser QR-Code Generator Online',
+    'meta.description': 'Generieren Sie QR-Codes schnell und einfach mit unserem kostenlosen Online-Tool. Erstellen Sie QR-Codes für Text, URLs und mehr.',
+    'input.label': 'Text oder URL eingeben',
+    'input.placeholder': 'Text hier eingeben oder einfügen...',
+    'button.generate': 'QR-Code generieren',
+    'result.empty': 'Ihr QR-Code erscheint hier'
+  },
+  fr: {
+    'meta.title': 'Générateur de QR Code Gratuit en Ligne',
+    'meta.description': 'Générez des QR codes rapidement et facilement avec notre outil en ligne gratuit. Créez des QR codes pour du texte, des URLs et plus.',
+    'input.label': 'Entrez le texte ou l\'URL',
+    'input.placeholder': 'Tapez ou collez votre texte ici...',
+    'button.generate': 'Générer le QR Code',
+    'result.empty': 'Votre QR code apparaîtra ici'
+  },
+  es: {
+    'meta.title': 'Generador de Códigos QR Gratis Online',
+    'meta.description': 'Genera códigos QR de forma rápida y sencilla con nuestra herramienta online gratuita. Crea códigos QR para texto, URLs y más.',
+    'input.label': 'Ingrese texto o URL',
+    'input.placeholder': 'Escriba o pegue su texto aquí...',
+    'button.generate': 'Generar Código QR',
+    'result.empty': 'Su código QR aparecerá aquí'
   }
 };
 

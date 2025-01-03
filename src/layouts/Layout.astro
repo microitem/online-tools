@@ -1,4 +1,6 @@
 ---
+import LanguageSelector from '../components/LanguageSelector.astro';
+
 interface Props {
   title: string;
   description: string;
@@ -22,8 +24,22 @@ const { title, description, lang = 'en' } = Astro.props;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <link rel="canonical" href={Astro.url.href} />
+    
+    {/* Add hreflang tags */}
+    <link rel="alternate" hreflang="x-default" href={`https://goodboog.com${Astro.url.pathname}`} />
+    <link rel="alternate" hreflang="en" href={`https://goodboog.com/en${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
+    <link rel="alternate" hreflang="sk" href={`https://goodboog.com/sk${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
+    <link rel="alternate" hreflang="de" href={`https://goodboog.com/de${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
+    <link rel="alternate" hreflang="fr" href={`https://goodboog.com/fr${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
+    <link rel="alternate" hreflang="es" href={`https://goodboog.com/es${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
   </head>
   <body>
+    <header class="bg-white shadow-sm">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href={`/${lang}`} class="text-xl font-bold">GoodBoog Tools</a>
+        <LanguageSelector />
+      </div>
+    </header>
     <slot />
   </body>
 </html>
