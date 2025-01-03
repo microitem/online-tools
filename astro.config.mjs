@@ -5,7 +5,10 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://goodboog.com',
   integrations: [
-    tailwind(),
+    tailwind({
+      config: { path: './tailwind.config.mjs' },
+      minify: true
+    }),
     sitemap({
       i18n: {
         defaultLocale: 'en',
@@ -21,7 +24,28 @@ export default defineConfig({
   ],
   output: 'static',
   build: {
-    inlineStylesheets: 'always'
+    inlineStylesheets: 'always',
+    minify: true,
+    cssMinify: true,
+    optimization: {
+      prefetch: true
+    }
   },
-  compressHTML: true
+  compressHTML: true,
+  vite: {
+    build: {
+      cssMinify: true,
+      minify: true,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            qrcode: ['qrcode']
+          }
+        }
+      }
+    },
+    ssr: {
+      noExternal: ['qrcode']
+    }
+  }
 });

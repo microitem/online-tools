@@ -7,9 +7,12 @@ const path = pathname.replace(`/${currentLang}`, '');
 ---
 
 <div class="language-selector">
+  <label for="lang-select" class="sr-only">Select language</label>
   <select
+    id="lang-select"
     class="px-2 py-1 border rounded-md text-sm"
-    onchange="window.location.pathname = this.value">
+    onchange="window.location.pathname = this.value"
+  >
     {Object.entries(languages).map(([lang, label]) => (
       <option value={`/${lang}${path}`} selected={lang === currentLang}>
         {label}
