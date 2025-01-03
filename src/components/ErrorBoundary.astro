@@ -1,0 +1,19 @@
+---
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+
+const errorMessages = {
+  en: "Something went wrong. Please try again.",
+  sk: "Niečo sa pokazilo. Prosím, skúste to znova.",
+  de: "Etwas ist schief gelaufen. Bitte versuche es erneut.",
+  fr: "Quelque chose s'est mal passé. Veuillez réessayer.",
+  es: "Algo salió mal. Por favor, inténtelo de nuevo."
+};
+---
+
+<div class="p-4 bg-red-50 border border-red-200 rounded-lg">
+  <p class="text-red-700">{errorMessages[lang] || errorMessages.en}</p>
+</div>

@@ -1,5 +1,6 @@
 ---
 import LanguageSelector from '../components/LanguageSelector.astro';
+import MetaTags from '../components/MetaTags.astro';
 
 interface Props {
   title: string;
@@ -8,6 +9,14 @@ interface Props {
 }
 
 const { title, description, lang = 'en' } = Astro.props;
+
+// Preload fonts
+const fontUrls = [
+  '/fonts/inter-var.woff2'
+];
+
+// Determine current tool for structured data
+const toolPath = Astro.url.pathname.split('/').pop();
 ---
 
 <!DOCTYPE html>
@@ -16,22 +25,49 @@ const { title, description, lang = 'en' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <link rel="canonical" href={Astro.url.href} />
     
-    {/* Add hreflang tags */}
-    <link rel="alternate" hreflang="x-default" href={`https://goodboog.com${Astro.url.pathname}`} />
-    <link rel="alternate" hreflang="en" href={`https://goodboog.com/en${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
-    <link rel="alternate" hreflang="sk" href={`https://goodboog.com/sk${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
-    <link rel="alternate" hreflang="de" href={`https://goodboog.com/de${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
-    <link rel="alternate" hreflang="fr" href={`https://goodboog.com/fr${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
-    <link rel="alternate" hreflang="es" href={`https://goodboog.com/es${Astro.url.pathname.replace(/^\/[a-z]{2}/, '')}`} />
+    {/* Preload critical assets */}
+    {fontUrls.map(url => (
+      <link rel="preload" href={url} as="font" type="font/woff2" crossorigin />
+    ))}
+    
+    <MetaTags title={title} description={description} />
+    
+    {/* PWA support */}
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#3b82f6" />
+    
+    {/* Structured data */}
+    {toolPath && (
+      <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": title,
+        "description": description,
+        "applicationCategory": "WebApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "url": Astro.url.href
+      })} />
+    )}
+    
+    <style is:inline>
+      /* Critical CSS */
+      @font-face {
+        font-family: 'Inter var';
+        font-weight: 100 900;
+        font-display: swap;
+        font-style: normal;
+        font-named-instance: 'Regular';
+        src: url("/fonts/inter-var.woff2") format("woff2");
+      }
+      
+      body {
+        font-family: 'Inter var', system-ui, -apple-system, sans-serif;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
   </head>
   <body>
     <header class="bg-white shadow-sm">
