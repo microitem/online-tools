@@ -1,4 +1,5 @@
 ---
+import Footer from "../../components/Footer.astro";
 import Layout from '../../layouts/Layout.astro';
 import QRGenerator from '../../tools/qr/components/QRGenerator.astro';
 import { useTranslations } from '../../tools/qr/i18n/translations';
@@ -14,4 +15,5 @@ const t = useTranslations('en');
     <h1 class="text-3xl font-bold text-center mb-8">{t('meta.title')}</h1>
     <QRGenerator />
   </main>
+  <Footer />
 </Layout>
