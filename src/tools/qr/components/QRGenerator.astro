@@ -16,20 +16,31 @@ const t = useTranslations(lang);
       class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       rows="4"
       placeholder={t('input.placeholder')}
+      autocomplete="off"
+      spellcheck="false"
     ></textarea>
   </div>
 
   <div class="flex flex-col items-center gap-4">
     <button
       id="generate-qr"
-      class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
       type="button"
+      disabled
     >
       {t('button.generate')}
     </button>
-    <div id="qr-result" class="w-64 h-64 flex items-center justify-center border border-gray-300 rounded-lg">
+    <div id="qr-result" class="w-64 h-64 flex items-center justify-center border border-gray-300 rounded-lg bg-white">
       <p class="text-gray-500 text-center p-4">{t('result.empty')}</p>
     </div>
+    <a 
+      id="download-qr"
+      class="hidden px-6 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      download="qr-code.png"
+      href="#"
+    >
+      {t('button.download')}
+    </a>
   </div>
 </div>
 
@@ -37,14 +48,34 @@ const t = useTranslations(lang);
   import QRCode from 'qrcode';
 
   const textArea = document.getElementById('qr-text') as HTMLTextAreaElement;
-  const generateButton = document.getElementById('generate-qr');
-  const resultDiv = document.getElementById('qr-result');
+  const generateButton = document.getElementById('generate-qr') as HTMLButtonElement;
+  const resultDiv = document.getElementById('qr-result') as HTMLDivElement;
+  const downloadButton = document.getElementById('download-qr') as HTMLAnchorElement;
 
-  if (textArea && generateButton && resultDiv) {
-    generateButton.addEventListener('click', async () => {
+  let debounceTimeout: number;
+
+  if (textArea && generateButton && resultDiv && downloadButton) {
+    // Enable button only when there's text
+    textArea.addEventListener('input', () => {
+      const hasText = textArea.value.trim().length > 0;
+      generateButton.disabled = !hasText;
+      
+      // Debounced auto-generation
+      clearTimeout(debounceTimeout);
+      if (hasText) {
+        debounceTimeout = setTimeout(() => generateQR(textArea.value.trim()), 500);
+      }
+    });
+
+    // Generate on button click
+    generateButton.addEventListener('click', () => {
       const text = textArea.value.trim();
-      if (!text) return;
+      if (text) {
+        generateQR(text);
+      }
+    });
 
+    async function generateQR(text: string) {
       try {
         const url = await QRCode.toDataURL(text, {
           width: 256,
@@ -52,7 +83,8 @@ const t = useTranslations(lang);
           color: {
             dark: '#000000',
             light: '#ffffff'
-          }
+          },
+          errorCorrectionLevel: 'H'
         });
 
         const img = document.createElement('img');
@@ -62,9 +94,14 @@ const t = useTranslations(lang);
         
         resultDiv.innerHTML = '';
         resultDiv.appendChild(img);
+
+        // Update download button
+        downloadButton.href = url;
+        downloadButton.classList.remove('hidden');
       } catch (err) {
         console.error(err);
+        resultDiv.innerHTML = '<p class="text-red-500 text-center p-4">Error generating QR code</p>';
       }
-    });
+    }
   }
 </script>
