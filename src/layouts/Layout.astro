@@ -9,14 +9,6 @@ interface Props {
 }
 
 const { title, description, lang = 'en' } = Astro.props;
-
-// Preload fonts
-const fontUrls = [
-  '/fonts/inter-var.woff2'
-];
-
-// Determine current tool for structured data
-const toolPath = Astro.url.pathname.split('/').pop();
 ---
 
 <!DOCTYPE html>
@@ -25,57 +17,43 @@ const toolPath = Astro.url.pathname.split('/').pop();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    
-    {/* Preload critical assets */}
-    {fontUrls.map(url => (
-      <link rel="preload" href={url} as="font" type="font/woff2" crossorigin />
-    ))}
+    <meta name="generator" content={Astro.generator} />
     
     <MetaTags title={title} description={description} />
     
-    {/* PWA support */}
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#3b82f6" />
     
-    {/* Structured data */}
-    {toolPath && (
-      <script type="application/ld+json" set:html={JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": title,
-        "description": description,
-        "applicationCategory": "WebApplication",
-        "operatingSystem": "Any",
-        "browserRequirements": "Requires JavaScript",
-        "url": Astro.url.href
-      })} />
-    )}
-    
-    <style is:inline>
-      /* Critical CSS */
-      @font-face {
-        font-family: 'Inter var';
-        font-weight: 100 900;
-        font-display: swap;
-        font-style: normal;
-        font-named-instance: 'Regular';
-        src: url("/fonts/inter-var.woff2") format("woff2");
-      }
-      
-      body {
-        font-family: 'Inter var', system-ui, -apple-system, sans-serif;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
-      }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
+  <body class="bg-gray-50">
     <header class="bg-white shadow-sm">
       <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-        <a href={`/${lang}`} class="text-xl font-bold">GoodBoog Tools</a>
+        <a href={`/${lang}`} class="text-xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+          GoodBoog Tools
+        </a>
         <LanguageSelector />
       </div>
     </header>
     <slot />
+    
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('SW registered:', registration);
+            })
+            .catch(error => {
+              console.log('SW registration failed:', error);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
